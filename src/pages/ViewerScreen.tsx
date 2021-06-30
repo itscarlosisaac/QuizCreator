@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const DahboardScreen = () => {
+export const ViewerScreen = () => {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>Viewer</h1>
     </div>
   )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const DahboardScreen = () => {
+export const PrivateRoute = () => {
   return (
     <div>
-      <h1>Dashboard</h1>
+      
     </div>
   )
 }
