@@ -4,26 +4,24 @@ import {
   Route,
   BrowserRouter as Router
 } from 'react-router-dom'
-import { BuilderScreen } from '../pages/BuilderScreen'
-import { DashboardScreen } from '../pages/DashboardScreen'
-import { LoginScreen } from '../pages/LoginScreen'
-import { RegisterScreen } from '../pages/RegisterScreen'
-import { ViewerScreen } from '../pages/ViewerScreen'
+
+
+import { AuthRouter } from './AuthRouter';
+import { BuilderRouter } from './BuilderRouter';
+import { PublicRoute } from './PublicRoute';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicFormScreen } from '../pages/PublicFormScreen'
 
 export const AppRouter: FC = (): ReactElement => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   return (
     <>
       <Router>
         <>
           <Switch>
-            <Route path="/app/login" component={LoginScreen}/>
-            <Route path="/app/register" component={RegisterScreen}/>
-            <Route path="/app/dashboard" component={DashboardScreen}/>
-            <Route path="/app/builder/:formId" component={BuilderScreen}/>
-            <Route path="/app/viewer/:formId" component={ViewerScreen}/>
-            <Route path="/app/viewer/:formId/answers" component={LoginScreen}/>
-            <Route path="/app/viewer/:formId/answers/:answersId" component={LoginScreen}/>
-            <Route path="/app/public/:formId" component={LoginScreen}/>
+            <PublicRoute isAuthenticated={isLoggedIn} path="/auth" component={AuthRouter} />
+            <PrivateRoute isAuthenticated={isLoggedIn} path="/app" component={BuilderRouter} />
+            <Route path="/public/:formId" component={PublicFormScreen}/>
           </Switch>
         </>
       </Router>
