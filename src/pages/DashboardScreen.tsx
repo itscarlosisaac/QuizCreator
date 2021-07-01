@@ -1,6 +1,4 @@
-import { Container, Box, Text,  Button, Heading, Divider, ButtonGroup, Flex  } from "@chakra-ui/react"
-import { Icon } from "@chakra-ui/icons"
-import { TrashIcon, PencilIcon } from "@heroicons/react/outline"
+import { Container, Heading,  Flex  } from "@chakra-ui/react"
 import { Header } from "../components/Header"
 import { ListQuest } from "../components/Questionnaires/ListQuest"
 

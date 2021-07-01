@@ -1,6 +1,6 @@
 import { Box, Text,  Button, Heading, Divider, ButtonGroup, Flex  } from "@chakra-ui/react"
 import { Icon } from "@chakra-ui/icons"
-import { TrashIcon, PencilIcon } from "@heroicons/react/outline"
+import { TrashIcon, PencilIcon, DocumentSearchIcon, ClipboardCopyIcon } from "@heroicons/react/outline"
 
 export const SingleQuest = () => {
   return (
@@ -12,9 +12,19 @@ export const SingleQuest = () => {
           </Heading>
           <Divider w="20" orientation="horizontal" h="2" my="2"/>
           <Text> Form description goes in here </Text>
-          <Text fontSize="sm" fontWeight="700" color="blue.300"> 25 Answers recorded. </Text>
+          <Text fontSize="sm" fontWeight="700" color="blue.300">
+            25 Answers recorded.
+          </Text>
+          <Text as="small"  verticalAlign="middle" >
+            URL goes here
+            <Icon as={ClipboardCopyIcon} w={4} h={4} />
+          </Text>
         </Box>
         <ButtonGroup variant="outline" spacing="6" mr="4">
+          <Button
+            size="sm"
+            colorScheme="green"
+            leftIcon={ <Icon as={DocumentSearchIcon} w={4} h={4} />}>View Form</Button>
           <Button
             size="sm"
             colorScheme="linkedin"
