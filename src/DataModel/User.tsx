@@ -4,4 +4,5 @@ export interface UserModel {
   email: string,
   authId: string,
   userId: string,
+  createdAt: Date,
 }
