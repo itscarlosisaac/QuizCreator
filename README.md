@@ -1,5 +1,3 @@
-
-
 # Questionnaire App for Fueled Test Project
 
 ## Routes
@@ -25,4 +23,31 @@ Answer Types
  - Short Answer
  - Multiple Choice
  - Paragraph
- - Checkbox
+
+## User Specs
+
+Display Name = Full Name
+Email Address 
+Password
+LoginId
+RegisteredId
+createdAt
+forms
+userId
+
+## Forms Specs
+Form Id
+Form title
+Form descrition
+Form Questions
+Form Answers
+
+## Question Specs
+Question Id
+Question Name
+Question Type [ Single, Multiple, ] 
+Question Content
+
+## Answers Record
+Answer Id
+Answers
