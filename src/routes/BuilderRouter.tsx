@@ -1,4 +1,3 @@
-import {FC, ReactElement, useEffect, useState } from 'react'
 import {
   Switch,
   Route,
