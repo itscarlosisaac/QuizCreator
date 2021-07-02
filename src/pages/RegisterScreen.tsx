@@ -1,4 +1,4 @@
-import { Container, Box, Text,  Link as ChakraLink  } from "@chakra-ui/react"
+import { Container, Box, Text  } from "@chakra-ui/react"
 import { Register } from '../components/auth/Register'
 import { Link } from "react-router-dom"
 
@@ -9,9 +9,9 @@ export const RegisterScreen = () => {
         <Register />
       </Box>
       <Text>Already have an acocunt? 
-        <ChakraLink ml="1"  color="blue.500">
+        <Text as="span" ml="1"  color="blue.500">
           <Link to="/app/login">Login here</Link>
-        </ChakraLink>
+        </Text>
       </Text>
     </Container>
   )
