@@ -1,29 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Box, Heading, Button, Flex } from "@chakra-ui/react"
-import { firebaseManager } from '../../firebase/FirebaseManager';
 import { useHistory } from 'react-router-dom';
+import { StartCreatingNewForm } from '../../redux/actions/form.actions';
 
 export const Empty = () => {
 
   const history = useHistory();
+  const dispatch = useDispatch();
+  const [isCreating, setIsCreating] = useState(false)
 
   const handleCreateNewForm = async () => {
-    const formId = await firebaseManager.formManager.StartCreatingForm("newForm");
-    console.log("ID:", formId, )
-    history.push(`/app/builder/${formId}`)
-  }
-
-  const D = () => {
-    firebaseManager.formManager.StartFetchingForms("newForm")
+    setIsCreating(true)
+    const id = await dispatch(StartCreatingNewForm("newForm"))
+    history.push(`/app/builder/${id}`)
   }
 
   return (
     <>
       <Flex align="center" justify="center">
         <Box bg="white" p="10" shadow="xl" rounded="10" alignItems="center" justifyItems="center" display="flex" flexDir="column">
-          <Heading mb="10">You have 0 Forms.</Heading>
-          <Button onClick={D} size="lg" colorScheme="linkedin">GET DATA</Button>
-          <Button onClick={handleCreateNewForm} size="lg" colorScheme="linkedin">Create Form</Button>
+          <Button
+            isLoading={isCreating}
+            onClick={handleCreateNewForm}
+            size="lg"
+            colorScheme="linkedin">
+            Create Form
+          </Button>
         </Box>
       </Flex>
     </>
