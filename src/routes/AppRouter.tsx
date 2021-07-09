@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import {
   Switch,
   Route,
-  BrowserRouter as Router
+  BrowserRouter as Router,
 } from 'react-router-dom'
 
 import { firebaseManager } from '../firebase/FirebaseManager';
@@ -16,6 +16,8 @@ import { userLogin } from '../redux/actions/auth.actions'
 import { LoadingScreen } from '../pages/LoadingScreen';
 
 export const AppRouter: FC = (): ReactElement => {
+
+    
   const dispatch = useDispatch();
   const [firebaseLoading, setFirebaseLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -32,6 +34,7 @@ export const AppRouter: FC = (): ReactElement => {
     }))
   }, [dispatch, firebaseLoading, isLoggedIn])
   
+
   if ( firebaseLoading ) {
     return ( <LoadingScreen/> )
   }

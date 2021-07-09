@@ -6,7 +6,7 @@ import {
   Checkbox,
   Button
 } from "@chakra-ui/react";
-import { FC } from 'react';
+import { FC, useMemo, useEffect } from 'react';
 import { uuid } from 'uuidv4';
 import { Icon } from '@chakra-ui/icons'
 import { useState } from "react";
@@ -15,38 +15,50 @@ import { TrashIcon } from "@heroicons/react/outline";
 import { MultipleChoice } from "./BuilderTypes/MultipleChoice";
 import { ShortQuestion } from "./BuilderTypes/ShortQuestion";
 import { LongQuestion } from "./BuilderTypes/LongQuestion";
-
-type QuestionTypes = "Short" | "Long" | "Multiple";
-
+import { OptionModel, QuestionData } from "../../DataModel/Questionnaire";
 interface IProps {
-  id: string,
-  deleteQuestion: (id: string) => void
+  questionData: QuestionData,
+  questionActions: any
 }
 
-export const Question: FC <IProps> = (props) => {
+export const Question: FC<IProps> = ({
+  questionData,
+  questionActions
+}) => {
 
-  const [questionType, setQuestionType] = useState<QuestionTypes>("Multiple");
-  const [isQuestionRequired, setIsQuestionRequired] = useState<Boolean>(true);
-  
+  const { id, isRequired, questionType } = questionData;
+  const { updateQuestion, deleteQuestion, handleOptions } = questionActions;
+
   const handleSelectChange = (event: React.FormEvent) => {
-    const target = event.target as HTMLSelectElement
-    setQuestionType(target.value as QuestionTypes);
+    updateQuestion(id, "questionType", (event.target as HTMLSelectElement).value);
   }
-  const handleRequiredChange = (event: React.FormEvent) => {
-    setIsQuestionRequired(!isQuestionRequired)
+
+  const handleQuestionChange  = (val: string) => {
+    updateQuestion(id,"question", val)
+  }
+
+  const handleRequiredChange = () => {
+    updateQuestion(id, "isRequired", !isRequired )
   }
 
   const handleSelectQuestionType = () => {
-    switch (questionType) {
+    switch (questionData.questionType) {
       case "Short":
-        return <ShortQuestion  id={uuid()} />;
+        return <ShortQuestion
+          questionData={questionData}
+          setQuestion={handleQuestionChange} />;
       case "Long":
-        return <LongQuestion id={uuid()} />;
+        return <LongQuestion
+          questionData={questionData}
+          setQuestion={handleQuestionChange}/>;
       default:
-        return <MultipleChoice id={uuid()} />
+        return <MultipleChoice
+          questionData={questionData}
+          setQuestion={handleQuestionChange}
+          handleOptions={handleOptions} />
     }
   }
-
+  
   return (
     <>
       <Box bg="white" w="full" shadow="base" borderRadius="2" p="8" mb="6">
@@ -55,18 +67,22 @@ export const Question: FC <IProps> = (props) => {
             { handleSelectQuestionType() }
           </Flex>
           <Flex flexDir="column" justify="space-between">
-            <Select onChange={handleSelectChange}>
-              <option value="Multiple">Multiple Choice</option>
+            <Select defaultValue={questionType}  onChange={handleSelectChange}>
               <option value="Short">Short Question</option>
+              <option value="Multiple">Multiple Choice</option>
               <option value="Long">Long Question</option>
             </Select>
             <Flex flexDir="row" justify="space-between" align="center" maxW="150px">
-              <Button h="10" w="10" onClick={()=>props.deleteQuestion(props.id)}>
+              <Button h="10" w="10" onClick={()=>deleteQuestion(id)}>
                 <Icon as={TrashIcon} h="6" w="6" />
               </Button>
               <Divider w="1" h="6" orientation="vertical"/>
-              <Checkbox onChange={handleRequiredChange} checked={!isQuestionRequired} >Required</Checkbox>
-            </Flex>
+              <Checkbox
+                onChange={handleRequiredChange}
+                isChecked={isRequired} >
+                Required
+              </Checkbox>
+            </Flex> 
           </Flex>
         </Flex> 
       </Box>
