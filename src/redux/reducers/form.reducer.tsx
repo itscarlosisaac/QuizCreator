@@ -1,24 +1,49 @@
 import {
   FormActions
 } from '../constants/Form'
+
 import {
   ActionType
 } from '../constants/ActionType'
+const InitialState = {
+  formList: []
+}
 
-
-export const FormReducer = ( state = {}, action: ActionType ) => {
+export const FormReducer = (state = InitialState, action: ActionType) => {
+  console.log(action);
   switch (action.type) {
-    case FormActions.create:
-      return {}
+    case FormActions.fetching:
+      return {
+        ...state,
+        formList: [...action.payload]
+      }
+    
+    case FormActions.fetchSingle:
+      return {
+        ...state,
+        public: action.payload
+      }
   
-    case FormActions.edit:
-      return {}
+    case FormActions.editForm:
+      return {
+        ...state,
+        ...action.payload
+      }
     
-    case FormActions.update:
-      return {}
+    case FormActions.saveForm:
+      console.log(action.payload)
+      const forms = state.formList.concat(action.payload)
+      return {
+        ...state,
+        formList: forms
+      }
     
-    case FormActions.delete:
-      return {}
+    case FormActions.deleteForm:
+      const filteredForms = state.formList.filter((form:any) => form.meta.id !== action.payload)
+      return {
+        ...state,
+        formList: filteredForms
+      }
 
     default:
       return state;
