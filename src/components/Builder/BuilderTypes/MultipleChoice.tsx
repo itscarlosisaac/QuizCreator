@@ -3,60 +3,76 @@ import {
   Input,
   Button,
   Box,
-  RadioGroup,
-  Radio,
   HStack,
   InputGroup,
   InputRightElement
 } from "@chakra-ui/react";
+
 import { CloseIcon } from '@chakra-ui/icons'
-import { FC, useState } from 'react'
-import { uuid } from 'uuidv4';
-interface IProps {
-  id: string,
-  isRequired?: boolean
-}
+import { FC } from 'react'
+import { useForm } from "../../../hooks/useForm";
 
-interface Option {
-  id: string,
-}
+export const MultipleChoice: FC<any> = ({
+  setQuestion,
+  questionData,
+  handleOptions,
+}) => {
 
-export const MultipleChoice: FC<IProps> = (props) => {
-  const [state, setState] = useState<Option[]>([
-    { id: uuid() },
-    { id: uuid() }
-  ])
+  const { add, update, remove } = handleOptions;
 
-  const addOption = (): void => {
-    setState((prev) => [
-      ...prev,
-      { id:uuid(),  type: "Multiple" }
-    ])
+
+  const { id, question, options } = questionData
+
+  const editOption = (event: React.FormEvent): void => {
+    const optionId = (event.target as HTMLInputElement).name;
+    const value = (event.target as HTMLInputElement).value;
+    update(id, optionId,  value)
   }
 
-  const deleteOption = (id: string): void => {
-    setState((prev) => prev.filter(question => question.id !== id));
+  const deleteOption = (optionId: string): void => {
+    remove(id, optionId);
+  }
+  const addOption = (): void => {
+    add(id);
+  }
+
+  const handleChangeQuestion = (event: React.FormEvent) => {
+    const Target = event.target as HTMLInputElement;
+    setQuestion(Target.value);
   }
 
   return (
     <>
-      <FormControl mb="8" id={props.id}>
-        <Input  fontSize="xl" variant="flushed" placeholder="Question ?" isRequired />
+      <FormControl mb="8" id={id}>
+        <Input
+          value={question}
+          onChange={handleChangeQuestion}
+          fontSize="xl"
+          variant="flushed"
+          placeholder="Question ?"
+          isRequired />
       </FormControl>
-      {
-        state.map((option, index) => {
+      { options && 
+        options.map((option: any, index: number) => {
             return (
               <HStack mb="4" key={option.id}>
                 <InputGroup size="md">
                   <Input
+                    name={option.id}
+                    onChange={editOption}
+                    value={option.value}
                     isRequired
                     pr="4.5rem"
                     variant="outline" placeholder={`Answer ${index + 1}`} 
                   />
                   <InputRightElement width="2rem" mr="0.4rem">
                     {
-                      state.length > 2 &&
-                        <Button bg="red.400" h="1.75rem"size="sm" onClick={() => deleteOption(option.id)}>
+                      questionData.options!.length > 2 &&
+                        <Button
+                        bg="red.400"
+                        h="1.75rem"
+                        size="sm"
+                        onClick={() => deleteOption(option.id)}>
                           <CloseIcon h={2} w={2} color="white"/>
                         </Button>
                     }

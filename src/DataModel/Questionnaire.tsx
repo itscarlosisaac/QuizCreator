@@ -8,16 +8,26 @@ export interface QuestionnaireModel {
   ownerId: string,
 }
 
-export type QuestionTypeModel = "Short" | "Long" | "Multiple"
+export type QuestionTypes = "Short" | "Long" | "Multiple";
+export interface QuestionModel {
+  questionData: QuestionData,
+  setQuestion?: (val: string) => void,
+}
 
-export type QuestionModel = {
-  type: QuestionTypeModel,
-  question: string
-  isRequired?: boolean
-  options?: OptionModel[]
+export interface QuestionData {
+  id: string,
+  isRequired?: boolean,
+  question: string,
+  questionType: QuestionTypes,
+  options?: OptionModel[] | null,
+}
+export interface MultipleQuestionProps extends QuestionModel {
+  handleAddOption: () => void,
+  handleEditOption: (id: string, value: string) => void
+  handleDeleteOption: (id: string) => void
 }
 
 export type OptionModel = {
   id: string,
-  value: string,
+  value: string
 }

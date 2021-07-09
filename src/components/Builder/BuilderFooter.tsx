@@ -3,17 +3,22 @@ import { Flex, Button, Box, Tooltip, Text } from "@chakra-ui/react"
 import { PlusSquareIcon } from "@chakra-ui/icons"
 
 interface IProps {
+  saving: boolean,
   addQuestion: () => void
-  saveForm: (event: React.FormEvent) => void
+  publicUrl: string
 }
 
-export const BuilderFooter: FC <IProps> = (props) => {
+export const BuilderFooter: FC<IProps> = ({
+  saving,
+  addQuestion,
+  publicUrl
+}) => {
   return (
     <>
       <Flex justify="center" align="center" py="6">
         <Tooltip label="Add Question" aria-label="Add Question">
           <Button
-            onClick={props.addQuestion}
+            onClick={addQuestion}
             variant="outline"
             colorScheme="linkedin"
             borderRadius="100px"
@@ -25,6 +30,7 @@ export const BuilderFooter: FC <IProps> = (props) => {
       </Flex>
       <Flex justify="space-between" align="center" py="6">
         <Button
+          isLoading={saving}
           type="submit"
           colorScheme="green"
           variant="solid" >
@@ -34,7 +40,7 @@ export const BuilderFooter: FC <IProps> = (props) => {
           <Text as="p">
             Share:
             <Text ml="2" as="small" p="2" bg="white">
-              URL GOES HERE
+              {publicUrl}
             </Text>
           </Text>
         </Box>
