@@ -2,7 +2,7 @@ import { v4 as uuid_v4 } from 'uuid';
 import { useHistory, useLocation } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Container, Divider, Button, Flex } from "@chakra-ui/react"
+import { Container, Divider, Button, Flex, useToast } from "@chakra-ui/react"
 import { ArrowBackIcon } from '@chakra-ui/icons'
 
 import { Header } from "../components/Header"
@@ -22,11 +22,10 @@ export const BuilderScreen = () => {
   const [questionList, setQuestionList] = useState<QuestionData[]>([])
   const [saving, isSaving] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  
+  const toast = useToast()
 
   const loc = useLocation().pathname.replace("/app/builder/", '/public/');
   const formUrl = new URL(loc, "https://fueled-questionnaire.web.app/");
-  console.log(`object`, formUrl)
 
 
   const [formValues, setFormValues, reset, setValues] = useForm({
@@ -121,6 +120,13 @@ export const BuilderScreen = () => {
     event.preventDefault();
     isSaving(true)
     const id = history.location.pathname.split("/")[3];
+    toast({
+      title: "Form Saved",
+      description: "The form has been saved.",
+      status: "success",
+      duration: 4000,
+      isClosable: true,
+    })
     await dispatch(
       StartSaveFormAction(id,
         {
