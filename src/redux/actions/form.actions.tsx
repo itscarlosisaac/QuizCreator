@@ -75,3 +75,8 @@ export const DeleteFormAction = (id: string) => ({
   type: FormActions.deleteForm,
   payload: id
 })
+
+export const CleanForm  = () => ({
+  type: FormActions.cleanForm,
+  payload: null
+})

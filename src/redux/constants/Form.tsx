@@ -7,5 +7,6 @@ export enum FormActions {
   editForm = "EDIT",
   addQuestion = "ADD",
   deleteQuestion = "DELETE",
-  saveForm = "SAVE"
+  saveForm = "SAVE",
+  cleanForm = "CLEAN"
 }

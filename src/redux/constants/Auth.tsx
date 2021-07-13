@@ -2,5 +2,6 @@
 export enum AuthActions {
   login = "LOGIN",
   logout = "LOGOUT",
-  register = "REGISTER"
+  register = "REGISTER",
+  cleanAuth = "CLEAN"
 }

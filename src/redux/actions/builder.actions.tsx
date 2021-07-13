@@ -15,3 +15,8 @@ export const GetData = (FormData:any) => ({
   type: BuilderActions.editing,
   payload: FormData
 })
+
+export const CleanBuilder  = () => ({
+  type: BuilderActions.cleanBuilder,
+  payload: null
+})
