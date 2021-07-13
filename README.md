@@ -1,28 +1,35 @@
 # Questionnaire App for Fueled Test Project
 
+# Instructions to run.
+
+- Clone the repository in the local machine
+- Run `yarn` to install the node dependencies
+- Run `yarn start` to start the project files
+- Navigate to `http://localhost:3000` or `http://0.0.0.0:3000` to see the project
+
 ## Routes
 - Login
 - Register
 - Form Dashboard
 - Form Builder
 - Form Viewer
+- Form Answers
 - Public URLS for forms
 
 
-app/login
-app/register
+auth/login
+auth/register
 app/dashboard
 app/builder/formId
 app/viewer/formId
 app/viewer/formId/answers/
-app/viewer/formId/answers/answersID
-app/public/formId
+public/formId
+public/thankyou
 
-
-Answer Types
- - Short Answer
+Questions Types
+ - Short Question
+ - Long Question
  - Multiple Choice
- - Paragraph
 
 ## User Specs
 
@@ -45,9 +52,8 @@ Form Answers
 ## Question Specs
 Question Id
 Question Name
-Question Type [ Single, Multiple, ] 
+Question Type [ Long, Short, Multiple, ] 
 Question Content
-
 ## Answers Record
 Answer Id
-Answers
+Answer Value

@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   BrowserRouter as Router,
+  Redirect,
 } from 'react-router-dom'
 
 import { firebaseManager } from '../firebase/FirebaseManager';
@@ -47,7 +48,8 @@ export const AppRouter: FC = (): ReactElement => {
             <PublicRoute isAuthenticated={isLoggedIn} path="/auth" component={AuthRouter} />
             <PrivateRoute isAuthenticated={isLoggedIn} path="/app" component={BuilderRouter} />
             <Route path="/public/:formId" component={PublicFormScreen}/>
-            <Route path="/thankyou" component={ThankYouScreen}/>
+            <Route path="/thankyou" component={ThankYouScreen} />
+            <Redirect exact from="/" to="/app/dashboard" />
           </Switch>
         </>
       </Router>
