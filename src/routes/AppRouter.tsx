@@ -14,10 +14,10 @@ import { PrivateRoute } from './PrivateRoute';
 import { PublicFormScreen } from '../pages/PublicFormScreen'
 import { userLogin } from '../redux/actions/auth.actions'
 import { LoadingScreen } from '../pages/LoadingScreen';
+import { ThankYouScreen } from '../pages/ThankYouScreen';
 
 export const AppRouter: FC = (): ReactElement => {
 
-    
   const dispatch = useDispatch();
   const [firebaseLoading, setFirebaseLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -47,6 +47,7 @@ export const AppRouter: FC = (): ReactElement => {
             <PublicRoute isAuthenticated={isLoggedIn} path="/auth" component={AuthRouter} />
             <PrivateRoute isAuthenticated={isLoggedIn} path="/app" component={BuilderRouter} />
             <Route path="/public/:formId" component={PublicFormScreen}/>
+            <Route path="/thankyou" component={ThankYouScreen}/>
           </Switch>
         </>
       </Router>

@@ -4,10 +4,11 @@ import { Icon  } from "@chakra-ui/icons"
 import { PaperAirplaneIcon }from "@heroicons/react/outline"
 
 interface IProps {
-  handleChange: any
+  handleChange: any,
+  isLoading: boolean
 }
 
-export const PublicFooter: FC<IProps> = ({handleChange}) => {
+export const PublicFooter: FC<IProps> = ({handleChange, isLoading}) => {
   return (
     <>
       <Box mt="8" bg="white" w="full" shadow="base" borderRadius="2" p="8" mb="6">
@@ -19,6 +20,7 @@ export const PublicFooter: FC<IProps> = ({handleChange}) => {
       </Box>
       <Flex justify="space-between" align="center" py="6">
         <Button
+          isLoading={isLoading}
           type="submit"
           rightIcon={<Icon as={PaperAirplaneIcon} h={4} w={4} />} 
           size="md"

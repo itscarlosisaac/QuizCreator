@@ -37,7 +37,7 @@ export const SimpleQuestion: FC<IProps> = ({
           {question}
         </FormLabel>
         <Textarea
-          name={question.replace(/ /g, "_").toLowerCase()} />
+          name={question} />
       </FormControl>
     </>
   )

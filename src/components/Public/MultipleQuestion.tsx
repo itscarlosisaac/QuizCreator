@@ -39,7 +39,7 @@ export const MultipleQuestion: FC<IProps> = ({
         <FormLabel>
           {question}
         </FormLabel>
-        <RadioGroup name={question.replace(/ /g, "_").toLowerCase()}>
+        <RadioGroup name={question}>
           <Stack>
             {
               options.map(option => {

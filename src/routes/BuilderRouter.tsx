@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router
 } from 'react-router-dom'
 
-import { ThankYouScreen } from '../pages/ThankYouScreen'
 import { BuilderScreen } from '../pages/BuilderScreen'
 import { DashboardScreen } from '../pages/DashboardScreen'
 import { ViewerScreen } from '../pages/ViewerScreen'
@@ -20,7 +19,6 @@ export const BuilderRouter = () => {
           <Route path="/app/viewer/:formId/answers" component={AnswerScreen}/>
           <Route path="/app/viewer/:formId/answers/:answersId" component={AnswerScreen}/>
           <Route path="/app/viewer/:formId" component={ViewerScreen}/>
-          <Route path="/app/thank-you" component={ThankYouScreen}/>
         </Switch>
       </>
     </Router>

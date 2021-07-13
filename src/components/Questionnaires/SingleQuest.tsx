@@ -40,17 +40,9 @@ export const SingleQuest: FC <IProps> = ({
     onClose();
   }
 
-  const handleCopyClipboard = () => {
-    console.log("CLICKING")
-    const holder = document.createElement("textarea");
-    holder.textContent = publicUrl;
-    holder.select();
-    holder.setSelectionRange(0, 99999)
-    document.execCommand("copy");
-  }
   return (
     <>
-      <Flex bg="white" shadow="md" p="3" borderRadius="4" justify="space-between" align="center" flexDir={["column", "row"]} mb="8">
+      <Flex bg="white" shadow="md" p="3" borderRadius="4" justify="space-between" align="flex-start" flexDir="column" mb="8">
         <Box>
           <Heading as="h3" size="md" >
             {title}
@@ -64,22 +56,32 @@ export const SingleQuest: FC <IProps> = ({
             Public Url: <Text as="span">{publicUrl}</Text>
           </Text>
         </Box>
-        <ButtonGroup variant="outline" spacing="6" mr="4">
-          <Button
-            size="sm"
-            colorScheme="green"
-            leftIcon={ <Icon as={DocumentSearchIcon} w={4} h={4} />}>
-            <Link to={`/app/viewer/${id}`}>View Form</Link>
-          </Button>
-          <Button
-            size="sm"
-            colorScheme="linkedin"
-            leftIcon={<Icon as={PencilIcon} w={4} h={4} />}>
-            <Link to={{
+        <ButtonGroup mt="4" size="sm" variant="outline" spacing="2" mr="4">
+          <Link to={`/app/viewer/${id}/answers`}>
+            <Button
+              size="sm"
+              colorScheme="purple"
+              leftIcon={ <Icon as={DocumentSearchIcon} w={4} h={4} />}>
+            View Answers
+            </Button>
+          </Link>
+          <Link to={`/app/viewer/${id}`}>
+            <Button
+              size="sm"
+              colorScheme="green"
+              leftIcon={ <Icon as={DocumentSearchIcon} w={4} h={4} />}>
+              View Form
+            </Button>
+          </Link>
+          <Link to={{
               pathname: `/app/builder/${id}`,
               state: {...formData}
-            }}>Edit</Link>
-          </Button>
+            }}>
+            <Button
+              size="sm"
+              colorScheme="linkedin"
+              leftIcon={<Icon as={PencilIcon} w={4} h={4} />}> Edit </Button>
+          </Link>
           <Button
             onClick={() => setIsOpen(true)}
             size="sm"

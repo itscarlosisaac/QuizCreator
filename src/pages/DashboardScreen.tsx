@@ -12,14 +12,17 @@ export const DashboardScreen = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const formList = useSelector((state: any) => state.form.formList);
+  const state = useSelector((state: any) => state);
+  const { formList } = state.form
+  const { auth } = state;
+  console.log(auth)
   const [isLoadingForms, setIsLoadingForms] = useState<boolean>(false)
   const [isCreating, setIsCreating] = useState<boolean>(false)
 
   useEffect(() => {
     setIsLoadingForms(true)     
     const InternalFetch = async () => {
-      await dispatch(StartFetchingForms("newForm"))
+      await dispatch(StartFetchingForms(auth.uid))
     };
     InternalFetch();
     setIsLoadingForms(false)
@@ -27,7 +30,7 @@ export const DashboardScreen = () => {
 
   const handleCreateNewForm = async () => {
     setIsCreating(true)
-    const id = await dispatch(StartCreatingNewForm("newForm"))
+    const id = await dispatch(StartCreatingNewForm(auth.uid))
     history.push(`/app/builder/${id}`)
   }
 
