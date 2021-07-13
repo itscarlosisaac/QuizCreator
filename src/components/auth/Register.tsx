@@ -25,10 +25,10 @@ export const Register = () => {
   const [isLoadingRegister, setLoading] = useState(false);
 
   const [userData, setUserData] = useForm({
-    username: "Carlos Martinez",
-    userEmail: "name@gmail.com",
-    userPassword: "mypasseor",
-    userPassVerification: "mypasseor"
+    username: "",
+    userEmail: "",
+    userPassword: "",
+    userPassVerification: ""
   });
 
   const { username, userEmail, userPassword, userPassVerification } = userData;

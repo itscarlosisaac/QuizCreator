@@ -6,7 +6,7 @@ import {
 } from '../constants/ActionType'
 
 
-export const AuthReducer = ( state = {}, action: ActionType ) => {
+export const AuthReducer = (state = {}, action: ActionType) => {
   switch (action.type) {
     case AuthActions.login:
       return {
@@ -14,7 +14,7 @@ export const AuthReducer = ( state = {}, action: ActionType ) => {
         email: action.payload.email,
         displayName: action.payload.displayName,
       }
-  
+    
     case AuthActions.logout:
       return { }
     
