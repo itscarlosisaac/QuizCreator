@@ -14,7 +14,8 @@ class FirebaseUserManager {
     return await firebase.auth().createUserWithEmailAndPassword(email, password);
   }
 
-  async LoginUser(email: string, password: string ) {
+  async LoginUser(email: string, password: string) {
+    console.log(email, password)
     return await firebase.auth().signInWithEmailAndPassword(email, password)
   }
 
