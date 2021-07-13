@@ -16,15 +16,15 @@
 - Form Answers
 - Public URLS for forms
 
-
-auth/login
-auth/register
-app/dashboard
-app/builder/formId
-app/viewer/formId
-app/viewer/formId/answers/
-public/formId
-public/thankyou
+## URLS
+- auth/login
+- auth/register
+- app/dashboard
+- app/builder/formId
+- app/viewer/formId
+- app/viewer/formId/answers/
+- public/formId
+- public/thankyou
 
 Questions Types
  - Short Question
@@ -33,27 +33,43 @@ Questions Types
 
 ## User Specs
 
-Display Name = Full Name
-Email Address 
-Password
-LoginId
-RegisteredId
-createdAt
-forms
-userId
+- Display Name = Full Name
+- Email Address 
+- Password
+- LoginId
+- RegisteredId
+- createdAt
+- forms
+- userId
 
 ## Forms Specs
-Form Id
-Form title
-Form descrition
-Form Questions
-Form Answers
+
+- meta
+  - createdAt: `string`
+  - description: `string`
+  - id: `string`
+  - publicUrl: `string`
+  - title: `string`
+  - updatedAt: `Date`
+- ownerId: `string`
+- questionList: `Question[]`
 
 ## Question Specs
-Question Id
-Question Name
-Question Type [ Long, Short, Multiple, ] 
-Question Content
+- id: `string`
+- options: `Option[]`
+- question: `string`
+- questionType: `"Short" | "Long" | "Multiple"`
+
+### Option
+  - id: `string`
+  - value: `string`
 ## Answers Record
-Answer Id
-Answer Value
+
+- data
+  - answer: `string`
+  - question: `string`
+- meta
+  - createdAt: `Date`
+  - formId: `string`
+  - id: `string`
+  - user: `string`
