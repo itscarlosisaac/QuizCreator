@@ -42,7 +42,7 @@ export const SingleQuest: FC <IProps> = ({
 
   return (
     <>
-      <Flex bg="white" shadow="md" p="3" borderRadius="4" justify="space-between" align="flex-start" flexDir="column" mb="8">
+      <Flex flexWrap="wrap" bg="white" shadow="md" p="3" borderRadius="4" justify="space-between" align="flex-start" flexDir="column" mb="8">
         <Box>
           <Heading as="h3" size="md" >
             {title}
@@ -56,9 +56,10 @@ export const SingleQuest: FC <IProps> = ({
             Public Url: <Text as="span">{publicUrl}</Text>
           </Text>
         </Box>
-        <ButtonGroup mt="4" size="sm" variant="outline" spacing="2" mr="4">
+        <ButtonGroup  flexWrap="wrap"  mt="4" size="sm" variant="outline" spacing="2">
           <Link to={`/app/viewer/${id}/answers`}>
             <Button
+              mt="2"
               size="sm"
               colorScheme="purple"
               leftIcon={ <Icon as={DocumentSearchIcon} w={4} h={4} />}>
@@ -67,6 +68,7 @@ export const SingleQuest: FC <IProps> = ({
           </Link>
           <Link to={`/app/viewer/${id}`}>
             <Button
+              mt="2"
               size="sm"
               colorScheme="green"
               leftIcon={ <Icon as={DocumentSearchIcon} w={4} h={4} />}>
@@ -78,11 +80,13 @@ export const SingleQuest: FC <IProps> = ({
               state: {...formData}
             }}>
             <Button
+              mt="2"
               size="sm"
               colorScheme="linkedin"
               leftIcon={<Icon as={PencilIcon} w={4} h={4} />}> Edit </Button>
           </Link>
           <Button
+            mt="2"
             onClick={() => setIsOpen(true)}
             size="sm"
             colorScheme="red"

@@ -62,12 +62,12 @@ export const Question: FC<IProps> = ({
   return (
     <>
       <Box bg="white" w="full" shadow="base" borderRadius="2" p="8" mb="6">
-        <Flex justify="space-between" flexDir="row">
+        <Flex justify="space-between" flexDir={{base: "column", lg:"row"}}>
           <Flex w="80%" flexDir="column">
             { handleSelectQuestionType() }
           </Flex>
-          <Flex flexDir="column" justify="space-between">
-            <Select defaultValue={questionType}  onChange={handleSelectChange}>
+          <Flex flexDir="column" justify="space-between" flexWrap="wrap" mt={{base:"3"}}>
+            <Select defaultValue={questionType}  onChange={handleSelectChange} mb={{base:"3"}}>
               <option value="Short">Short Question</option>
               <option value="Multiple">Multiple Choice</option>
               <option value="Long">Long Question</option>

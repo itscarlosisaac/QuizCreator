@@ -15,7 +15,7 @@ export const BuilderFooter: FC<IProps> = ({
 }) => {
   return (
     <>
-      <Flex justify="center" align="center" py="6">
+      <Flex justify="center" align="center" py="6" >
         <Tooltip label="Add Question" aria-label="Add Question">
           <Button
             onClick={addQuestion}
@@ -28,7 +28,7 @@ export const BuilderFooter: FC<IProps> = ({
           </Button>
         </Tooltip>
       </Flex>
-      <Flex justify="space-between" align="center" py="6">
+      <Flex justify="space-between" align="center" py="6"  flexDir={{base: "column", lg:"row"}}>
         <Button
           isLoading={saving}
           type="submit"
@@ -36,7 +36,7 @@ export const BuilderFooter: FC<IProps> = ({
           variant="solid" >
           Save Form
         </Button>
-        <Box>
+        <Box mt={{base:"8"}}>
           <Text as="p">
             Share:
             <Text ml="2" as="small" p="2" bg="white">
