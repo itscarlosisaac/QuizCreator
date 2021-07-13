@@ -31,6 +31,8 @@ export const BuilderReducer = (state = InitialState, action: ActionType) => {
       return {
         ...action.payload
       }
+    case BuilderActions.cleanBuilder:
+      return { }
   
     case BuilderActions.deleteQuestion:
       return {}

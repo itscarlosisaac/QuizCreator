@@ -10,7 +10,6 @@ const InitialState = {
 }
 
 export const FormReducer = (state = InitialState, action: ActionType) => {
-  console.log(action);
   switch (action.type) {
     case FormActions.fetching:
       return {
@@ -44,6 +43,8 @@ export const FormReducer = (state = InitialState, action: ActionType) => {
         ...state,
         formList: filteredForms
       }
+    case FormActions.cleanForm:
+      return {}
 
     default:
       return state;
